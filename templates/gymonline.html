@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block contenido %}
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Portfolio Grid Items -->
+      <div class="row">
+
+        <!-- Portfolio Item 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto"> <!--data-toggle="modal" data-target="#portfolioModal1"-->
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+              <div class="portfolio-item-caption-content text-center text-white">
+                <a href="/coffee"><i class="fas fa-plus fa-3x"></i></a>
+              </div>
+            </div>
+            <img class="img-fluid" src="oli.jpg" alt="coffee">
+          </div>
+        </div>
+        <!-- Portfolio Item 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto">
+              <h3 class="alert alert-warning" role="alert">Para ejercitar:</h3>
+          </div>
+        </div>
+
+        <!-- Portfolio Item 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="portfolio-item mx-auto"> 
+              <ul class="list-group">
+                {% for tipo in tipos %}
+                    <li class="list-group-item"><a data-toggle="modal" data-target="#{{ tipo }}">{{ tipo }}</a></li>
+                {% endfor %}
+              </ul>
+          </div>
+        </div>
+        
+      </div>
+      <!-- /.row -->
+
+  <!-- Portfolio Modal -->
+ {% for tipo in tipos %}
+  <div class="portfolio-modal modal fade" id="{{ tipo }}" tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <!-- Portfolio Modal - Title -->
+                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">{{ tipo }}</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Modal - Image -->
+                <img class="img-fluid rounded mb-5" src="static/img/{{ tipo }}.jpg" alt="">
+                <!-- Portfolio Modal - Text -->
+                <p class="mb-5">
+                
+ {% if tipo == "Americano": %}
+                El americano se prepara con la base de expresso y dos partes de agua caliente.
+  {% elif tipo == "Latte": %}
+                El latte se prepara con una carga de expresso y dos partes de leche cremada.
+  {% endif %}
+              </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+{% endblock %}
